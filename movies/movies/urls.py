@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^movies/$', views.MoviesListView.as_view()),
     url(r'^movies/(?P<id>(\d)+)', views.MovieView.as_view()),
     url(r'^person/$', views.PersonListView.as_view()),
-    url(r'^person/(?P<id>(\d)+)', views.PersonView.as_view()),
+    url(r'^person/(?P<pk>(\d)+)', views.PersonView.as_view(), name="person-detail"),
 ]

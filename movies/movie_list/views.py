@@ -29,18 +29,18 @@ class MovieView(APIView):
         except Movie.DoesNotExist:
             raise Http404
 
-    def get(self, request, id, format=None):
-        movies = self.get_object(id)
+    def get(self, request, pk, format=None):
+        movies = self.get_object(pk)
         serializer = MovieSerializer(movies, context={"request": request})
         return Response(serializer.data)
 
-    def delete(self, request, id, format=None):
-        movie = self.get_object(id)
+    def delete(self, request, pk, format=None):
+        movie = self.get_object(pk)
         movie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def put(self, request, id, format=None):
-        movie = self.get_object(id)
+    def put(self, request, pk, format=None):
+        movie = self.get_object(pk)
         serializer = MovieSerializer(movie, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -71,18 +71,18 @@ class PersonView(APIView):
         except Movie.DoesNotExist:
             raise Http404
 
-    def get(self, request, id, format=None):
-        person = self.get_object(id)
+    def get(self, request, pk, format=None):
+        person = self.get_object(pk)
         serializer = PersonSerializer(person, context={"request": request})
         return Response(serializer.data)
 
-    def delete(self, request, id, format=None):
-        person = self.get_object(id)
+    def delete(self, request, pk, format=None):
+        person = self.get_object(pk)
         person.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def put(self, request, id, format=None):
-        person = self.get_object(id)
+    def put(self, request, pk, format=None):
+        person = self.get_object(pk)
         serializer = PersonSerializer(person, data=request.data)
         if serializer.is_valid():
             serializer.save()

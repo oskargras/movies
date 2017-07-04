@@ -10,8 +10,8 @@ class PersonSerializer(serializers.ModelSerializer):
 
 
 #Tworzę serialaizer dla Movie
-class MovieSerializer(serializers.ModelSerializer):
-    director = PersonSerializer()
+class MovieSerializer(serializers.HyperlinkedModelSerializer):
+    director = serializers.HyperlinkedIdentityField(view_name="person-detail", read_only=True)
     actors = PersonSerializer(many=True)
     class Meta:
         model = Movie
